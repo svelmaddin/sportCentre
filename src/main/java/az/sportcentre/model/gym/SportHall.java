@@ -1,34 +1,38 @@
 package az.sportcentre.model.gym;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class SportHall {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Hall_ID")
     private long id;
     private String name;
     private String category;
-    private String country;
-    private String city;
-    private String metroStation;
-    private String address;
     private String phoneNumber;
     private String email;
+    private boolean isActive;
     private String instagram;
     private String facebook;
+    private int likes;
+    private int disLike;
 
     @OneToMany(mappedBy = "sportHall", cascade = CascadeType.ALL)
     private List<Trainers> trainers;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "sportHall", cascade = CascadeType.ALL)
+    private List<Address> address;
+
 
 }

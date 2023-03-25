@@ -1,20 +1,18 @@
 package az.sportcentre.model.gym;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Builder
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
 public class Trainers {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String name;
     private String surname;
     private GENDER gender;
@@ -22,11 +20,13 @@ public class Trainers {
     private String about;
     private String phoneNumber;
     private String email;
+    private boolean isActive;
     private String instagram;
     private String facebook;
 
-    @ManyToOne
-    @JoinColumn(name = "sport_hall_id")
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="hall_id")
     private SportHall sportHall;
 
 }

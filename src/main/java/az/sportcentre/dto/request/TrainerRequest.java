@@ -1,16 +1,17 @@
-package az.sportcentre.response;
+package az.sportcentre.dto.request;
 
 import az.sportcentre.model.gym.GENDER;
+import az.sportcentre.model.gym.SportHall;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class TrainerResponse {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class TrainerRequest {
     private String name;
     private String surname;
     private GENDER gender;
@@ -20,4 +21,7 @@ public class TrainerResponse {
     private String email;
     private String instagram;
     private String facebook;
+    private boolean isActive;
+    private SportHall sportHall;
+
 }
